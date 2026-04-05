@@ -1,0 +1,123 @@
+<%- include('partials/head') %>
+
+<body class="bg-gray-50 min-h-screen flex flex-col font-sans">
+
+  <!-- NAVBAR -->
+  <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <%- include('partials/nav') %>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto px-6 py-8 flex-grow">
+
+    <!-- TITLE -->
+    <h1 class="text-3xl font-semibold text-gray-800 mb-6">
+      🏡 Explore Homes
+    </h1>
+
+    <!-- SEARCH BAR -->
+    <form method="GET" action="/" 
+      class="bg-white shadow-md rounded-full p-3 flex flex-wrap gap-3 items-center mb-8">
+
+      <input 
+        type="text" 
+        name="location" 
+        placeholder="📍 Where are you going?"
+        class="flex-1 px-4 py-2 rounded-full outline-none"
+      />
+
+      <input 
+        type="number" 
+        name="maxPrice" 
+        placeholder="💰 Max Price"
+        class="w-40 px-4 py-2 rounded-full outline-none"
+      />
+
+      <button 
+        class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition">
+        Search
+      </button>
+
+    </form>
+
+    <% if (homes.length === 0) { %>
+      <div class="text-center mt-20">
+        <p class="text-gray-400 text-xl">No homes found 😢</p>
+      </div>
+    <% } %>
+
+    <!-- GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+      <% homes.forEach(home => { %>
+
+      <!-- CARD -->
+      <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+
+        <!-- IMAGE -->
+        <div class="overflow-hidden">
+          <img 
+            src="<%= home.image || 'https://source.unsplash.com/600x400/?luxury-house' %>" 
+            class="w-full h-52 object-cover hover:scale-110 transition duration-500"
+          />
+        </div>
+
+        <!-- CONTENT -->
+        <div class="p-4">
+
+          <div class="flex justify-between items-center">
+            <h2 class="text-lg font-semibold text-gray-800 truncate">
+              <%= home.houseName %>
+            </h2>
+            <span class="text-yellow-500 text-sm">
+              ⭐ <%= home.rating %>
+            </span>
+          </div>
+
+          <p class="text-gray-500 text-sm mt-1">
+            📍 <%= home.location %>
+          </p>
+
+          <p class="text-gray-900 font-semibold mt-2">
+            ₹ <%= home.price %> <span class="text-gray-500 text-sm">/ night</span>
+          </p>
+
+          <!-- BUTTONS -->
+          <div class="flex gap-2 mt-4">
+
+            <a href="/home/<%= home.id %>" 
+              class="flex-1 text-center bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition">
+              View
+            </a>
+
+            <a href="/edit-home/<%= home.id %>" 
+              class="flex-1 text-center bg-gray-200 py-2 rounded-lg hover:bg-gray-300 transition">
+              Edit
+            </a>
+
+          </div>
+
+          <form action="/delete-home/<%= home.id %>" method="POST" class="mt-2">
+            <button 
+              onclick="return confirm('Delete this home?')" 
+              class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
+              Delete
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+      <% }) %>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 text-gray-400 text-sm">
+    © 2026 Rentify • Built by Garvpuri 🚀
+  </footer>
+
+</body>
+</html>

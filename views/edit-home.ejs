@@ -1,0 +1,114 @@
+<%- include('partials/head') %>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+
+  <div class="container mx-auto p-6">
+
+<!-- 🔙 Back Button -->
+<div class="mb-4">
+  <a href="/" class="text-blue-600 hover:underline font-medium">
+    ← Back to Home
+  </a>
+</div>
+
+<div class="bg-white p-8 rounded-2xl shadow-xl max-w-xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center">Edit Property</h1>
+
+  <form action="/edit-home" method="POST" enctype="multipart/form-data" class="flex flex-col gap-5">
+
+    <!-- hidden id -->
+    <input type="hidden" name="id" value="<%= home.id %>" />
+
+    <!-- House Name -->
+    <div>
+      <label class="text-sm text-gray-600">House Name</label>
+      <input type="text" name="houseName" value="<%= home.houseName %>"
+        class="border p-3 rounded-lg w-full focus:ring-2 focus:ring-blue-400" required />
+    </div>
+
+    <!-- 📸 IMAGE SECTION -->
+    <% if (home.image) { %>
+    <div class="relative group">
+      <img id="currentImage" src="<%= home.image %>" 
+           class="w-full h-48 object-cover rounded-xl shadow-md" />
+
+      <!-- Remove overlay -->
+      <label class="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-lg cursor-pointer opacity-90 hover:opacity-100">
+        Remove
+        <input type="checkbox" name="removeImage" value="yes" class="hidden"/>
+      </label>
+    </div>
+    <% } %>
+
+    <!-- Upload new image -->
+    <div class="border-2 border-dashed border-gray-300 p-4 rounded-xl text-center hover:border-blue-400 transition">
+      <input type="file" id="imageInput" name="image" class="hidden" />
+      <label for="imageInput" class="cursor-pointer text-gray-600">
+        📤 Click to upload new image
+      </label>
+
+      <!-- Preview -->
+      <img id="preview" class="mt-3 w-full h-40 object-cover hidden rounded-lg" />
+    </div>
+
+    <!-- Location -->
+    <div>
+      <label class="text-sm text-gray-600">Location</label>
+      <input type="text" name="location" value="<%= home.location %>"
+        class="border p-3 rounded-lg w-full" required />
+    </div>
+
+    <!-- Price -->
+    <div>
+      <label class="text-sm text-gray-600">Price</label>
+      <input type="number" name="price" value="<%= home.price %>"
+        class="border p-3 rounded-lg w-full" required />
+    </div>
+
+    <!-- Rating -->
+    <div>
+      <label class="text-sm text-gray-600">Rating</label>
+      <input type="number" name="rating" value="<%= home.rating %>"
+        class="border p-3 rounded-lg w-full" />
+    </div>
+
+    <!-- 🔥 ACTION BUTTONS -->
+    <div class="flex justify-between items-center gap-4 mt-4">
+
+      <!-- Cancel -->
+      <a href="/" 
+         class="w-1/2 text-center bg-gray-200 py-3 rounded-lg hover:bg-gray-300 transition">
+        Cancel
+      </a>
+
+      <!-- Update -->
+      <button class="w-1/2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition shadow-md">
+        Update
+      </button>
+
+    </div>
+
+  </form>
+</div>
+```
+
+  </div>
+
+  <!-- 🔥 Preview Script -->
+
+  <script>
+    const input = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+
+    input.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.classList.remove("hidden");
+      }
+    });
+  </script>
+
+</body>
+</html>
