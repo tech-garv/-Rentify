@@ -1,43 +1,17 @@
 # 🏠 Rentify – Backend System
 
-A scalable and secure backend system for a property rental platform, built using **Node.js, Express, and MySQL**. Rentify enables users to list, manage, and explore rental properties with authentication, authorization, and advanced features.
+A **scalable backend system** for a rental property platform, built with **Node.js, Express, and MySQL**, supporting secure authentication, property management, and dynamic search functionality.
 
 ---
 
-## 🚀 Features
+## 🚀 Key Highlights
 
-* 🔐 **Authentication & Security**
-
-  * Session-based authentication using cookies
-  * Secure login & signup with bcrypt password hashing
-  * Server-side validation using express-validator
-
-* 🧠 **Authorization**
-
-  * Ownership-based access control
-  * Only listing owners can edit/delete their properties
-
-* 🔄 **CRUD Operations**
-
-  * Create, Read, Update, Delete property listings
-  * RESTful API design
-
-* 🖼️ **Image Upload System**
-
-  * File upload using Multer
-  * Image storage on server
-  * Update & delete images dynamically
-
-* 🗄️ **Database Integration**
-
-  * MySQL relational database
-  * Optimized queries for performance
-  * Structured data handling
-
-* 🔍 **Search & Filtering**
-
-  * Filter properties by location and price
-  * Dynamic data retrieval
+* 🔐 Implemented **secure session-based authentication** using cookies and bcrypt hashing
+* 🧠 Designed **ownership-based authorization** to protect user resources
+* 🔄 Developed **RESTful APIs** with full CRUD functionality
+* 🖼️ Integrated **Multer-based file upload system** for property images
+* 🗄️ Built optimized **MySQL relational database schema** for efficient queries
+* 🔍 Implemented **dynamic search & filtering** by location and price
 
 ---
 
@@ -47,16 +21,54 @@ A scalable and secure backend system for a property rental platform, built using
 * **Database:** MySQL
 * **Authentication:** Sessions, Cookies
 * **Validation:** express-validator
-* **File Upload:** Multer
+* **File Handling:** Multer
 * **Security:** bcrypt
+
+---
+
+## 📡 API Endpoints (Sample)
+
+| Method | Route           | Description        |
+| ------ | --------------- | ------------------ |
+| GET    | /properties     | Get all listings   |
+| POST   | /properties     | Create new listing |
+| GET    | /properties/:id | Get single listing |
+| PUT    | /properties/:id | Update listing     |
+| DELETE | /properties/:id | Delete listing     |
+| POST   | /auth/signup    | Register user      |
+| POST   | /auth/login     | Login user         |
+
+---
+
+## 🖼️ Features Breakdown
+
+### 🔐 Authentication & Security
+
+* Session-based login system
+* Password hashing using bcrypt
+* Input validation using express-validator
+
+### 🧠 Authorization
+
+* Only property owners can edit/delete listings
+
+### 🖼️ Image Upload
+
+* Upload, update, delete property images
+* Stored locally using Multer
+
+### 🔍 Search & Filtering
+
+* Filter listings based on:
+
+  * Location
+  * Price range
 
 ---
 
 ## 📁 Project Structure
 
-```
 project/
-│
 ├── controllers/
 ├── models/
 ├── routes/
@@ -64,75 +76,47 @@ project/
 ├── views/
 ├── uploads/
 ├── app.js
-├── package.json
-├── .env
-└── .gitignore
-```
 
 ---
 
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the repository
+## ⚙️ Setup Instructions
 
 ```bash
 git clone https://github.com/your-username/rentify-backend.git
 cd rentify-backend
-```
-
-### 2️⃣ Install dependencies
-
-```bash
 npm install
 ```
 
-### 3️⃣ Setup environment variables
-
-Create a `.env` file:
+Create `.env` file:
 
 ```
-DB_HOST=your_host
-DB_USER=your_user
-DB_PASSWORD=your_password
-DB_NAME=your_database
-SESSION_SECRET=your_secret
+DB_HOST=your_host  
+DB_USER=your_user  
+DB_PASSWORD=your_password  
+DB_NAME=your_database  
+SESSION_SECRET=your_secret  
 ```
 
----
-
-### 4️⃣ Run the server
+Run server:
 
 ```bash
 npm start
 ```
 
-Server will run on:
-
-```
-http://localhost:3000
-```
-
 ---
 
-## 🔐 Important Notes
+## 🧪 API Testing
 
-* Do not upload:
-
-  * `node_modules/`
-  * `.env`
-  * `uploads/`
-
-* Use `.gitignore` to keep repo clean and secure
+Tested using **Postman / Thunder Client**
 
 ---
 
 ## 🚀 Future Improvements
 
-* Cloud image storage (Cloudinary)
+* Cloud storage (Cloudinary / AWS S3)
 * JWT authentication
 * Pagination & advanced filters
-* Booking system integration
-* Deployment (Render / Railway)
+* Booking system
 
 ---
 
@@ -142,6 +126,3 @@ http://localhost:3000
 
 ---
 
-## ⭐ Show Your Support
-
-If you like this project, give it a ⭐ on GitHub!
